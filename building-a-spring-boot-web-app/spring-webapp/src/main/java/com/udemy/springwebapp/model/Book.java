@@ -1,12 +1,18 @@
 package com.udemy.springwebapp.model;
 
+import javax.persistence.*;
 import java.util.Set;
 
+@Entity
 public class Book {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String title;
     private String isbn;
     private String publisher;
-
+    @ManyToMany
     private Set<Author> authors;
 
     public Book() {
@@ -23,6 +29,14 @@ public class Book {
         this.isbn = isbn;
         this.publisher = publisher;
         this.authors = authors;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
